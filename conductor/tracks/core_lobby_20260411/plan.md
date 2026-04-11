@@ -12,14 +12,14 @@
     - [x] Implement Feature: Create `/ws/{session_id}/{user_id}` endpoint for real-time communication
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Project Setup and Backend Foundation' (Protocol in workflow.md) [8b8ce80]
 
-## Phase 2: Frontend Foundation and Lobby System
+## Phase 2: Frontend Foundation and Lobby System [checkpoint: 5d006e9]
 - [x] Task: Initialize React project structure and testing framework [142f5f1]
     - [x] Write Tests: Setup Jest/React Testing Library and render initial component
     - [x] Implement Feature: Initialize React app with basic layout and routing
 - [x] Task: Implement Lobby Join UI [cdbc249]
     - [x] Write Tests: Test name input form and join button interactions
     - [x] Implement Feature: Create Join Component that accepts a display name and connects to the WebSocket
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Frontend Foundation and Lobby System' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Frontend Foundation and Lobby System' (Protocol in workflow.md) [5d006e9]
 
 ## Phase 3: Voting System and Game Logic
 - [ ] Task: Implement Fibonacci Card Deck UI
