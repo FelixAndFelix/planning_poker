@@ -16,9 +16,9 @@
 - [x] Task: Initialize React project structure and testing framework [142f5f1]
     - [x] Write Tests: Setup Jest/React Testing Library and render initial component
     - [x] Implement Feature: Initialize React app with basic layout and routing
-- [ ] Task: Implement Lobby Join UI
-    - [ ] Write Tests: Test name input form and join button interactions
-    - [ ] Implement Feature: Create Join Component that accepts a display name and connects to the WebSocket
+- [x] Task: Implement Lobby Join UI [cdbc249]
+    - [x] Write Tests: Test name input form and join button interactions
+    - [x] Implement Feature: Create Join Component that accepts a display name and connects to the WebSocket
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Frontend Foundation and Lobby System' (Protocol in workflow.md)
 
 ## Phase 3: Voting System and Game Logic
