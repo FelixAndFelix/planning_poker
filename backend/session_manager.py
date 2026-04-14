@@ -40,5 +40,6 @@ class SessionManager:
     def reset_round(self, session_id: str):
         if session_id in self.sessions:
             self.sessions[session_id]["revealed"] = False
+            self.sessions[session_id]["average"] = None
             for user in self.sessions[session_id]["users"].values():
                 user["vote"] = None

@@ -83,6 +83,12 @@ export default function Game() {
     }
   }
 
+  const handleReset = () => {
+    if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
+      socketRef.current.send(JSON.stringify({ type: 'reset' }))
+    }
+  }
+
   if (error) {
     return (
       <div className="error">
@@ -117,6 +123,9 @@ export default function Game() {
       {session.revealed && session.average !== null && (
         <div className="results">
           <h2>Average: {session.average.toFixed(1)}</h2>
+          <button className="reset-button" onClick={handleReset}>
+            Reset Round
+          </button>
         </div>
       )}
 

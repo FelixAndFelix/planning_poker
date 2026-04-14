@@ -47,6 +47,9 @@ async def websocket_endpoint(websocket: WebSocket, session_id: str, user_id: str
             elif data.get("type") == "reveal":
                 session_manager.reveal_votes(session_id)
                 await manager.broadcast_session_state(session_id)
+            elif data.get("type") == "reset":
+                session_manager.reset_round(session_id)
+                await manager.broadcast_session_state(session_id)
     except WebSocketDisconnect:
         manager.disconnect(websocket, session_id)
         # We might want to remove the user from the session too, but for MVP keep them as offline
