@@ -25,9 +25,9 @@
 - [x] Task: Implement Fibonacci Card Deck UI [e16524b]
     - [x] Write Tests: Test rendering of Fibonacci cards (0, 1, 2, 3, 5, 8, 13, 21, Skip) and selection state
     - [x] Implement Feature: Create Card Deck component for participants to cast their vote
-- [ ] Task: Implement WebSocket Voting Logic
-    - [ ] Write Tests: Test `vote` event emission from client and handling on server
-    - [ ] Implement Feature: Send vote to server, update session state, and broadcast updated state to all clients
+- [x] Task: Implement WebSocket Voting Logic [aa7ba7a]
+    - [x] Write Tests: Test `vote` event emission from client and handling on server
+    - [x] Implement Feature: Send vote to server, update session state, and broadcast updated state to all clients
 - [ ] Task: Implement Reveal and Average Calculation
     - [ ] Write Tests: Test average calculation ignoring skipped votes, test `reveal` event broadcasting
     - [ ] Implement Feature: Host button to reveal votes, compute average, and display results to all participants
