@@ -11,8 +11,8 @@ export default function Join() {
     if (!name.trim()) return
 
     const sid = sessionId.trim() || Math.random().toString(36).substring(2, 9)
-    // Store user name in local storage for the game component to use
-    localStorage.setItem('userName', name)
+    // Store user name in session storage for the game component to use
+    sessionStorage.setItem('userName', name)
     navigate(`/${sid}`)
   }
 

@@ -23,16 +23,16 @@ export default function Game() {
   const socketRef = useRef<WebSocket | null>(null)
 
   useEffect(() => {
-    const userName = localStorage.getItem('userName')
+    const userName = sessionStorage.getItem('userName')
     if (!userName) {
       navigate('/')
       return
     }
 
-    let userId = localStorage.getItem('userId')
+    let userId = sessionStorage.getItem('userId')
     if (!userId) {
       userId = Math.random().toString(36).substring(2, 9)
-      localStorage.setItem('userId', userId)
+      sessionStorage.setItem('userId', userId)
     }
 
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
@@ -103,7 +103,7 @@ export default function Game() {
   }
 
   const users = Object.values(session.users)
-  const userId = localStorage.getItem('userId')
+  const userId = sessionStorage.getItem('userId')
   const currentUserVote = userId ? session.users[userId]?.vote : null
 
   return (
