@@ -4,5 +4,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Build core Planning Poker lobby and WebSocket voting system**
+- [x] **Track: Build core Planning Poker lobby and WebSocket voting system**
   *Link: [./tracks/core_lobby_20260411/](./tracks/core_lobby_20260411/)*
