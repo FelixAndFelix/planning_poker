@@ -21,8 +21,8 @@
     - [ ] Implement Feature: Create `Dockerfile` at the root with a Node build stage for the frontend, and a Python production stage containing Nginx, backend code, and built frontend assets.
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Docker Containerization' (Protocol in workflow.md) [f7a9b45]
 
-## Phase 3: Documentation and Final Verification
+## Phase 3: Documentation and Final Verification [checkpoint: 086db16]
 - [x] Task: Document Deployment and Networking [d774148]
     - [ ] Write Tests: N/A
     - [ ] Implement Feature: Update `README.md` with instructions on how to build the Docker image and run it with port 2323 mapped (`-p 2323:80`).
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Documentation and Final Verification' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Documentation and Final Verification' (Protocol in workflow.md) [086db16]workflow.md)
