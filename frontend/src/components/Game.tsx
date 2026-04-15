@@ -36,10 +36,12 @@ export default function Game() {
     }
 
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
-    // For development we assume backend on port 8000
+    // For development we assume backend on port 8000. 
+    // In production (Docker), we use the current host and port (Nginx handles proxying).
     const backendPort = '8000'
     const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    const host = isLocal ? `${window.location.hostname}:${backendPort}` : window.location.host
+    const isProd = import.meta.env.PROD
+    const host = (isLocal && !isProd) ? `${window.location.hostname}:${backendPort}` : window.location.host
     const socketUrl = `${protocol}//${host}/ws/${sessionId}/${userId}?name=${encodeURIComponent(userName)}`
 
     console.log('Connecting to WebSocket:', socketUrl)
