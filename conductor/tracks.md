@@ -9,5 +9,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: make the application deployment readey. This includes Docker files + correct networking and dokumentation of the ports. Aplication should be availabel under server Port 2323. Add aditional github workfolws that execute tests when comitting to main branch. This Track shold be aubout the CD Part in CICD development.**
+- [x] **Track: make the application deployment readey. This includes Docker files + correct networking and dokumentation of the ports. Aplication should be availabel under server Port 2323. Add aditional github workfolws that execute tests when comitting to main branch. This Track shold be aubout the CD Part in CICD development.**
 *Link: [./tracks/deployment_cicd_20260415/](./tracks/deployment_cicd_20260415/)*
