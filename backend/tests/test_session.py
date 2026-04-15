@@ -49,15 +49,25 @@ def test_session_manager_reveal_and_reset():
     session_id = "test-session"
     
     manager.join_session(session_id, "user-1", "Alice")
+    manager.join_session(session_id, "user-2", "Bob")
+    manager.join_session(session_id, "user-3", "Charlie")
+    
     manager.submit_vote(session_id, "user-1", "5")
+    manager.submit_vote(session_id, "user-2", "8")
+    manager.submit_vote(session_id, "user-3", "Skip")
     
     # Reveal
     manager.reveal_votes(session_id)
     session = manager.get_session(session_id)
     assert session["revealed"] is True
+    # (5 + 8) / 2 = 6.5
+    assert session["average"] == 6.5
     
     # Reset
     manager.reset_round(session_id)
     session = manager.get_session(session_id)
     assert session["revealed"] is False
+    assert session["average"] is None
     assert session["users"]["user-1"]["vote"] is None
+    assert session["users"]["user-2"]["vote"] is None
+    assert session["users"]["user-3"]["vote"] is None

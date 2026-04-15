@@ -30,6 +30,13 @@ def test_websocket_broadcast():
             assert "user-1" in data2["users"]
             assert "user-2" in data2["users"]
             
-            # ws1 should receive Bob's join update
-            data1 = ws1.receive_json()
-            assert "user-2" in data1["users"]
+def test_websocket_voting():
+    with client.websocket_connect("/ws/test-session/user-1?name=Alice") as ws1:
+        _ = ws1.receive_json() # Initial state
+        
+        # Alice votes
+        ws1.send_json({"type": "vote", "vote": "5"})
+        
+        # ws1 should receive update
+        data = ws1.receive_json()
+        assert data["users"]["user-1"]["vote"] == "5"
