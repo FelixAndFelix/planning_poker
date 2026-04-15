@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Start FastAPI backend in the background
 # We assume the virtualenv or system python has the dependencies installed

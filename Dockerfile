@@ -30,7 +30,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy and prepare start script
 COPY start.sh ./
-RUN chmod +x start.sh
+RUN tr -d '\r' < start.sh > start_unix.sh && mv start_unix.sh start.sh && chmod +x start.sh
 
 # The application will listen on port 80 (Nginx) which proxies to 8000 (FastAPI)
 EXPOSE 80
