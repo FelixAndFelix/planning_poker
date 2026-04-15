@@ -4,7 +4,7 @@ import { MemoryRouter, Routes, Route } from 'react-router-dom'
 import Game from './Game'
 
 test('renders game lobby with session id', () => {
-  localStorage.setItem('userName', 'Felix')
+  sessionStorage.setItem('userName', 'Felix')
   render(
     <MemoryRouter initialEntries={['/test-session']}>
       <Routes>
