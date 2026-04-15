@@ -10,7 +10,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: GitHub Actions CI Pipeline' (Protocol in workflow.md) [be8d394]
 
 ## Phase 2: Docker Containerization
-- [ ] Task: Create Nginx Configuration
+- [x] Task: Create Nginx Configuration [858ccb7]
     - [ ] Write Tests: Verify proxy behavior locally if possible.
     - [ ] Implement Feature: Create `nginx.conf` to serve static frontend files on port 80 and proxy `/api` and WebSocket traffic to the backend.
 - [ ] Task: Create Start Script for Container
