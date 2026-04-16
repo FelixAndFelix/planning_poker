@@ -13,10 +13,12 @@ class MockWebSocket {
   readyState: number = 1 // OPEN
   send = vi.fn()
   close = vi.fn()
+  url: string;
 
   static OPEN = 1
 
-  constructor(public url: string) {
+  constructor( url: string) {
+    this.url = url
     mockSocketInstance = this
   }
 }
@@ -105,13 +107,13 @@ test('displays revealed votes and average', async () => {
   expect(await screen.findByText(/Average Score/i)).toBeInTheDocument()
   expect(await screen.findByText(/4.0/i)).toBeInTheDocument()
   
-  const felixCard = screen.getByText(/Felix/i).closest('.participant-card')
+  const felixCard = screen.getByText(/Felix/i).closest('.participant-card') as HTMLElement;
   expect(felixCard).not.toBeNull()
   if (felixCard) {
     expect(within(felixCard).getByText('3')).toBeInTheDocument()
   }
 
-  const aliceCard = screen.getByText(/Alice/i).closest('.participant-card')
+  const aliceCard = screen.getByText(/Alice/i).closest('.participant-card') as HTMLElement;
   expect(aliceCard).not.toBeNull()
   if (aliceCard) {
     expect(within(aliceCard).getByText('5')).toBeInTheDocument()

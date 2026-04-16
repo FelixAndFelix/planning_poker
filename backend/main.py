@@ -52,5 +52,5 @@ async def websocket_endpoint(websocket: WebSocket, session_id: str, user_id: str
                 await manager.broadcast_session_state(session_id)
     except WebSocketDisconnect:
         manager.disconnect(websocket, session_id)
-        # We might want to remove the user from the session too, but for MVP keep them as offline
-        # await manager.broadcast_session_state(session_id)
+        session_manager.leave_session(session_id, user_id)
+        await manager.broadcast_session_state(session_id)
