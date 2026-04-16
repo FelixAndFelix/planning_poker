@@ -16,7 +16,7 @@ jobs:
       - name: Sync and Rebuild
         run: |
           # Sync code to the folder your docker-compose.yml expects
-          rsync -avz --delete --exclude='.env' ./ /home/felix/stacks/planning-poker/
+          rsync -avz --delete --exclude='.env' ./ /home/felix/stacks/planning_poker/
           
           # Run compose for the specific service
           cd /home/felix/stacks
