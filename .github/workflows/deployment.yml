@@ -1,0 +1,24 @@
+name: CD (Deploy)
+
+on:
+  workflow_run:
+    workflows: ["tests-push-pullrequest-main-branch"]
+    types: [completed]
+    branches: [master]
+
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sync and Rebuild
+        run: |
+          # Sync code to the folder your docker-compose.yml expects
+          rsync -avz --delete --exclude='.env' ./ /home/felix/stacks/planning-poker/
+          
+          # Run compose for the specific service
+          cd /home/felix/stacks
+          docker compose up -d --build planning-poker
+          docker image prune -f

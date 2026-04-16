@@ -1,0 +1,16 @@
+# Secrets und lokale Konfiguration
+.env
+.env.local
+.env.*.local
+
+# Datein
+./.gemini/settings.json
+
+# Editor
+.vscode/
+settings.json
+.stitch/config.json
+
+# Werkzeuge
+.agents
+.gemini

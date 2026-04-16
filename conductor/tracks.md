@@ -13,5 +13,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 *Link: [./tracks/deployment_cicd_20260415/](./tracks/deployment_cicd_20260415/)*
 ---
 
-- [ ] **Track: Redesign the frontend using Stitch and the DHBW design system. Implement Lobby and Game screens based on existing backend functionality.**
+- [~] **Track: Redesign the frontend using Stitch and the DHBW design system. Implement Lobby and Game screens based on existing backend functionality.**
 *Link: [./tracks/frontend_redesign_20260416/](./tracks/frontend_redesign_20260416/)*
