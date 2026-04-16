@@ -7,7 +7,7 @@
     - [x] Install any necessary dependencies for the new design system (e.g., specific fonts, icons).
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Preparation & Design Sync' (Protocol in workflow.md) 0d41469
 
-## Phase 2: Lobby Screen Implementation (TDD)
+## Phase 2: Lobby Screen Implementation (TDD) [checkpoint: 4088da7]
 - [x] Task: Implement Lobby Screen UI and Validation 713ddb2
     - [x] Write tests for Lobby component (empty fields validation, join trigger).
     - [x] Create `Join.tsx` using Stitch-inspired components and DHBW styling.
@@ -15,7 +15,7 @@
 - [x] Task: Connect Lobby to Backend a163529
     - [x] Write tests for WebSocket connection and session creation/join.
     - [x] Integrate WebSocket logic to handle Lobby actions.
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Lobby Screen Implementation' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Lobby Screen Implementation' (Protocol in workflow.md) 4088da7
 
 ## Phase 3: Game Screen & Voting (TDD)
 - [ ] Task: Implement Game Screen UI & Participants List
