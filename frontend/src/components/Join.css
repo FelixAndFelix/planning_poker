@@ -147,9 +147,11 @@
   color: var(--color-on-surface);
 }
 
-.btn-secondary:hover {
-  background-color: var(--color-surface-container-high);
-  filter: brightness(0.95);
+.btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none !important;
+  filter: none !important;
 }
 
 @media (max-width: 480px) {

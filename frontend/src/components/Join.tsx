@@ -104,6 +104,7 @@ export default function Join() {
               type="button" 
               className="btn btn-secondary" 
               onClick={() => handleAction('join')}
+              disabled={!sessionId.trim()}
             >
               Join Session <ArrowRight size={18} />
             </button>

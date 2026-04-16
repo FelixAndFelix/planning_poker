@@ -14,6 +14,13 @@ class SessionManager:
             "vote": None
         }
 
+    def leave_session(self, session_id: str, user_id: str):
+        if session_id in self.sessions and user_id in self.sessions[session_id]["users"]:
+            del self.sessions[session_id]["users"][user_id]
+            # If no users left, clean up the session
+            if not self.sessions[session_id]["users"]:
+                del self.sessions[session_id]
+
     def submit_vote(self, session_id: str, user_id: str, vote: str):
         if session_id in self.sessions and user_id in self.sessions[session_id]["users"]:
             self.sessions[session_id]["users"][user_id]["vote"] = vote

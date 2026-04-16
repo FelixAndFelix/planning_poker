@@ -40,3 +40,19 @@ def test_websocket_voting():
         # ws1 should receive update
         data = ws1.receive_json()
         assert data["users"]["user-1"]["vote"] == "5"
+
+def test_websocket_user_leaving():
+    with client.websocket_connect("/ws/test-session/user-1?name=Alice") as ws1:
+        _ = ws1.receive_json() # Initial state
+        
+        with client.websocket_connect("/ws/test-session/user-2?name=Bob") as ws2:
+            _ = ws2.receive_json() # Bob's initial state
+            _ = ws1.receive_json() # Alice receives Bob joined
+            
+            # Bob leaves
+            ws2.close()
+            
+        # Alice should receive update that Bob left
+        data = ws1.receive_json()
+        assert "user-2" not in data["users"]
+

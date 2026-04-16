@@ -37,8 +37,8 @@ test('prevents joining with empty name', () => {
     </MemoryRouter>
   )
 
-  const joinButton = screen.getByRole('button', { name: /join session/i })
-  fireEvent.click(joinButton)
+  const createButton = screen.getByRole('button', { name: /create session/i })
+  fireEvent.click(createButton)
 
   // Navigate should not have been called
   expect(mockedUsedNavigate).not.toHaveBeenCalled()
@@ -89,14 +89,8 @@ test('prevents joining with empty session ID', () => {
     </MemoryRouter>
   )
 
-  const nameInput = screen.getByPlaceholderText(/your name/i)
   const joinButton = screen.getByRole('button', { name: /join session/i })
-
-  fireEvent.change(nameInput, { target: { value: 'Felix' } })
-  fireEvent.click(joinButton)
-
-  expect(mockedUsedNavigate).not.toHaveBeenCalled()
-  expect(screen.getByText(/please enter a lobby id to join/i)).toBeInTheDocument()
+  expect(joinButton).toBeDisabled()
 })
 
 test('copies invite link to clipboard', async () => {
