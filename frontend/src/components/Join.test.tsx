@@ -59,7 +59,9 @@ test('creates a new session when "Create Session" is clicked', () => {
   fireEvent.click(createButton)
 
   expect(mockedUsedNavigate).toHaveBeenCalledWith(expect.stringMatching(/^\/[a-z0-9]+$/))
+  expect(sessionStorage.getItem('userName')).toBe('Felix')
 })
+
 
 test('joins an existing session when "Join Session" is clicked with ID', () => {
   mockedUsedNavigate.mockClear()
