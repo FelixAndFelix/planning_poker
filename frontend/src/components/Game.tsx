@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { Users, Info, Eye, RotateCcw, ChevronLeft } from 'lucide-react'
 import CardDeck from './CardDeck'
+import './Game.css'
 
 interface User {
   id: string
@@ -36,21 +38,21 @@ export default function Game() {
     }
 
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
-    // For development we assume backend on port 8000. 
-    // In production (Docker), we use the current host and port (Nginx handles proxying).
-    const backendPort = '8000'
     const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
     const isProd = import.meta.env.PROD
-    const host = (isLocal && !isProd) ? `${window.location.hostname}:${backendPort}` : window.location.host
-    const socketUrl = `${protocol}//${host}/ws/${sessionId}/${userId}?name=${encodeURIComponent(userName)}`
+    
+    // Determine backend host
+    let host = window.location.host
+    if (isLocal && !isProd) {
+      host = `${window.location.hostname}:8000`
+    }
 
-    console.log('Connecting to WebSocket:', socketUrl)
+    const socketUrl = `${protocol}//${host}/ws/${sessionId}/${userId}?name=${encodeURIComponent(userName)}`
 
     const socket = new WebSocket(socketUrl)
     socketRef.current = socket
 
     socket.onopen = () => {
-      console.log('WebSocket connected to', socketUrl)
       setError(null)
     }
 
@@ -62,10 +64,6 @@ export default function Game() {
     socket.onerror = (err) => {
       console.error('WebSocket error:', err)
       setError('Connection error. Is the backend running?')
-    }
-
-    socket.onclose = () => {
-      console.log('WebSocket disconnected')
     }
 
     return () => {
@@ -93,15 +91,28 @@ export default function Game() {
 
   if (error) {
     return (
-      <div className="error">
-        <p>{error}</p>
-        <button onClick={() => navigate('/')}>Back to Join</button>
+      <div className="game-page centered">
+        <div className="status-card error">
+          <Info size={48} />
+          <h2>Connection Error</h2>
+          <p>{error}</p>
+          <button className="btn btn-secondary" onClick={() => navigate('/')}>
+            Back to Join
+          </button>
+        </div>
       </div>
     )
   }
 
   if (!session) {
-    return <div>Connecting to lobby {sessionId}...</div>
+    return (
+      <div className="game-page centered">
+        <div className="status-card">
+          <div className="loader"></div>
+          <p>Connecting to lobby {sessionId}...</p>
+        </div>
+      </div>
+    )
   }
 
   const users = Object.values(session.users)
@@ -109,35 +120,77 @@ export default function Game() {
   const currentUserVote = userId ? session.users[userId]?.vote : null
 
   return (
-    <div className="game-container">
-      <h1>Lobby: {sessionId}</h1>
-      <div className="users-list">
-        <h2>Participants</h2>
-        <ul>
-          {users.map((user, index) => (
-            <li key={index}>
-              {user.name}: {session.revealed ? (user.vote ?? 'No vote') : (user.vote ? '✅' : '⏳')}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {session.revealed && session.average !== null && (
-        <div className="results">
-          <h2>Average: {session.average.toFixed(1)}</h2>
-          <button className="reset-button" onClick={handleReset}>
-            Reset Round
-          </button>
-        </div>
-      )}
-
-      {!session.revealed && (
-        <button className="reveal-button" onClick={handleReveal}>
-          Reveal Votes
+    <div className="game-page">
+      <header className="game-header">
+        <button className="icon-button" onClick={() => navigate('/')} title="Leave Session">
+          <ChevronLeft size={24} />
         </button>
-      )}
+        <div className="header-info">
+          <h1>Lobby: {sessionId}</h1>
+          <p className="subtitle">{users.length} Participants</p>
+        </div>
+        <div className="header-actions">
+          {!session.revealed ? (
+            <button className="btn btn-primary btn-sm" onClick={handleReveal}>
+              <Eye size={18} /> Reveal
+            </button>
+          ) : (
+            <button className="btn btn-secondary btn-sm" onClick={handleReset}>
+              <RotateCcw size={18} /> Reset
+            </button>
+          )}
+        </div>
+      </header>
 
-      <CardDeck onVote={handleVote} selectedVote={currentUserVote} />
+      <main className="game-main">
+        <section className="participants-section">
+          <div className="section-header">
+            <Users size={20} />
+            <h2>Participants</h2>
+          </div>
+          <div className="participants-grid">
+            {users.map((user) => (
+              <div key={user.id} className={`participant-card ${user.vote ? 'has-voted' : ''} ${session.revealed ? 'revealed' : ''}`}>
+                <div className="participant-avatar">
+                  {user.name.charAt(0).toUpperCase()}
+                </div>
+                <div className="participant-info">
+                  <span className="participant-name">{user.name}</span>
+                  <span className="participant-status">
+                    {session.revealed 
+                      ? (user.vote ? 'Voted' : 'No vote') 
+                      : (user.vote ? 'Ready' : 'Thinking...')}
+                  </span>
+                </div>
+                <div className="participant-vote">
+                  {session.revealed ? (
+                    <span className="vote-value">{user.vote ?? '-'}</span>
+                  ) : (
+                    <div className="vote-placeholder">
+                      {user.vote ? <div className="dot"></div> : null}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {session.revealed && session.average !== null && (
+          <section className="results-section">
+             <div className="results-card">
+                <span className="results-label">Average Score</span>
+                <span className="results-value">{session.average.toFixed(1)}</span>
+             </div>
+          </section>
+        )}
+      </main>
+
+      <footer className="game-footer">
+        <div className="deck-container">
+          <CardDeck onVote={handleVote} selectedVote={currentUserVote} />
+        </div>
+      </footer>
     </div>
   )
 }
