@@ -1,0 +1,49 @@
+:root {
+  /* Colors */
+  --color-primary: #b40012; /* Deep Academic Red */
+  --color-primary-container: #e2001a; /* Electric Red */
+  --color-surface: #f9f9f9; /* Gallery White */
+  --color-surface-container-low: #f3f3f3; /* Soft Stone Grey */
+  --color-surface-container-lowest: #ffffff; /* Pure Canvas White */
+  --color-surface-container-high: #e8e8e8; /* Utility Grey */
+  --color-on-surface: #1a1c1c; /* Soft Charcoal */
+  --color-on-primary: #ffffff;
+
+  /* Typography */
+  --font-headline: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-xs: calc(var(--spacing-unit) * 0.5); /* 4px */
+  --spacing-sm: var(--spacing-unit); /* 8px */
+  --spacing-md: calc(var(--spacing-unit) * 2); /* 16px */
+  --spacing-lg: calc(var(--spacing-unit) * 3); /* 24px */
+  --spacing-xl: calc(var(--spacing-unit) * 4); /* 32px */
+  --spacing-2xl: calc(var(--spacing-unit) * 6); /* 48px */
+  --spacing-3xl: calc(var(--spacing-unit) * 8); /* 64px */
+
+  /* Shape */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-full: 9999px;
+
+  /* Shadows (Minimal use, prefer tonal layering) */
+  --shadow-ambient: 0px 12px 32px rgba(26, 28, 28, 0.06);
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  margin: 0;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  margin: 0;
+}
