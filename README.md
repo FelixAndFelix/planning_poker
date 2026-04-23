@@ -75,5 +75,11 @@ Die Kommunikation folgt einem **Ereignis-gesteuerten WebSocket-Modell**. Das Bac
 2. **Server** validiert die Aktion und aktualisiert den Session-Status.
 3. **Server** broadcastet den neuen Gesamtzustand an alle verbundenen WebSockets der Session.
 
+
+## Autoren
+- [@einermitW](https://github.com/einermitw)
+- [@kargfel](https://github.com/kargfel)
+
+
 ## Lizenz
 Standard-Platzhalter: [MIT License](LICENSE)
